@@ -7,8 +7,8 @@ import com.fivestars.rocketnotes.admins.domain.services.StudentQueryService;
 import com.fivestars.rocketnotes.admins.interfaces.rest.resources.CreateStudentResource;
 import com.fivestars.rocketnotes.admins.interfaces.rest.resources.StudentResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +28,8 @@ public class StudentController {
                 createStudentResource.getFirstName(),
                 createStudentResource.getPaternalLastName(),
                 createStudentResource.getMaternalLastName(),
-                createStudentResource.getDni()
+                createStudentResource.getDni(),
+                createStudentResource.getClassrooms()
         );
         return studentCommandService.handle(command);
     }
@@ -42,6 +43,7 @@ public class StudentController {
                         .paternalLastName(student.getPaternalLastName())
                         .maternalLastName(student.getMaternalLastName())
                         .dni(student.getDni())
+                        .classrooms(student.getClassrooms())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -55,6 +57,7 @@ public class StudentController {
                 .paternalLastName(student.getPaternalLastName())
                 .maternalLastName(student.getMaternalLastName())
                 .dni(student.getDni())
+                .classrooms(student.getClassrooms())
                 .build();
     }
 }

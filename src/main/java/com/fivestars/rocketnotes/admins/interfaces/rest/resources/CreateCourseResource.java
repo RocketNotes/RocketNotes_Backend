@@ -12,5 +12,5 @@ public class CreateCourseResource {
     private LocalDate end;
     private String days;
     private Long teacherId;
-    private byte[] image;
+    private String image;
 }

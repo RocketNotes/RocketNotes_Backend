@@ -4,8 +4,8 @@ import com.fivestars.rocketnotes.admins.domain.model.aggregates.Student;
 import com.fivestars.rocketnotes.admins.domain.model.commands.CreateStudentCommand;
 import com.fivestars.rocketnotes.admins.domain.services.StudentCommandService;
 import com.fivestars.rocketnotes.admins.infrastructure.persistence.jpa.repositories.StudentRepository;
-import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,9 @@ public class StudentCommandServiceImpl implements StudentCommandService {
                 command.firstName(),
                 command.paternalLastName(),
                 command.maternalLastName(),
-                command.dni());
+                command.dni(),
+                command.classrooms()
+        );
         studentRepository.save(student);
         return student.getId();
     }
