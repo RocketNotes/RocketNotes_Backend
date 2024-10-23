@@ -8,7 +8,7 @@
         <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.fivestars</groupId>
+    <groupId>com.rocketnotes</groupId>
     <artifactId>rocketnotes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>rocketnotes</name>
@@ -114,6 +114,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
