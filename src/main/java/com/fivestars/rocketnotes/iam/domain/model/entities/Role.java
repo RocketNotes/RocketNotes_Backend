@@ -7,14 +7,13 @@ import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 @Entity
 public class Role {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true, length = 20)
     private Roles name;

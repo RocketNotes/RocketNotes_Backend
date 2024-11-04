@@ -11,8 +11,7 @@ public class SignUpCommandFromResourceAssembler {
         var roles = resource.roles() != null
                 ? resource.roles().stream().map(name -> Role.toRoleFromName(name)).toList()
                 : new ArrayList<Role>();
-        System.out.print("Roles:");
-        System.out.println(roles.getFirst().getName().name());
+
         return new SignUpCommand(resource.username(), resource.password(), roles);
     }
 }

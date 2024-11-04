@@ -2,6 +2,7 @@ package com.fivestars.rocketnotes.admins.interfaces.rest;
 
 import com.fivestars.rocketnotes.admins.domain.model.aggregates.Teacher;
 import com.fivestars.rocketnotes.admins.domain.model.commands.CreateTeacherCommand;
+import com.fivestars.rocketnotes.admins.domain.model.commands.UpdateTeacherCommand;
 import com.fivestars.rocketnotes.admins.domain.services.TeacherCommandService;
 import com.fivestars.rocketnotes.admins.domain.services.TeacherQueryService;
 import com.fivestars.rocketnotes.admins.interfaces.rest.resources.CreateTeacherResource;
@@ -62,5 +63,24 @@ public class TeacherController {
                 .phone(teacher.getPhone())
                 .email(teacher.getEmail())
                 .build();
+    }
+
+    @PutMapping("/{id}")
+    public void updateTeacher(@PathVariable Long id, @RequestBody CreateTeacherResource updateTeacherResource) {
+        UpdateTeacherCommand command = new UpdateTeacherCommand(
+                id,
+                updateTeacherResource.getFirstName(),
+                updateTeacherResource.getPaternalLastName(),
+                updateTeacherResource.getMaternalLastName(),
+                updateTeacherResource.getDni(),
+                updateTeacherResource.getPhone(),
+                updateTeacherResource.getEmail()
+        );
+        teacherCommandService.handleUpdate(command);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTeacher(@PathVariable Long id) {
+        teacherCommandService.handleDelete(id);
     }
 }

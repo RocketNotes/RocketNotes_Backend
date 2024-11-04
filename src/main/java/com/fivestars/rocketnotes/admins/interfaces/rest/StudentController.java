@@ -2,6 +2,7 @@ package com.fivestars.rocketnotes.admins.interfaces.rest;
 
 import com.fivestars.rocketnotes.admins.domain.model.aggregates.Student;
 import com.fivestars.rocketnotes.admins.domain.model.commands.CreateStudentCommand;
+import com.fivestars.rocketnotes.admins.domain.model.commands.UpdateStudentCommand;
 import com.fivestars.rocketnotes.admins.domain.services.StudentCommandService;
 import com.fivestars.rocketnotes.admins.domain.services.StudentQueryService;
 import com.fivestars.rocketnotes.admins.interfaces.rest.resources.CreateStudentResource;
@@ -59,5 +60,23 @@ public class StudentController {
                 .dni(student.getDni())
                 .classrooms(student.getClassrooms())
                 .build();
+    }
+
+    @PutMapping("/{id}")
+    public void updateStudent(@PathVariable Long id, @RequestBody CreateStudentResource updateStudentResource) {
+        UpdateStudentCommand command = new UpdateStudentCommand(
+                id,
+                updateStudentResource.getFirstName(),
+                updateStudentResource.getPaternalLastName(),
+                updateStudentResource.getMaternalLastName(),
+                updateStudentResource.getDni(),
+                updateStudentResource.getClassrooms()
+        );
+        studentCommandService.handleUpdate(command);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentCommandService.deleteStudent(id);
     }
 }
